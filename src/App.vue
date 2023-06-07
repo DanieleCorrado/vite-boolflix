@@ -43,7 +43,11 @@ export default {
 <template>
  
   <Header @search="getFilms"/>
-  <ShowTitles/>
+
+  <main>
+    <ShowTitles/>
+  </main>
+  
 
 </template>
 

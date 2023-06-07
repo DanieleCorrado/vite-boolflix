@@ -22,11 +22,14 @@ export default {
     </div>
     
     <div class="other-infos">
-      <span>{{ titles.original_language }}</span>
+      <div class="flag">
+        <img :src='store.nationFlag + titles.original_language + ".svg" ' :alt="titles.original_language">
+      </div>
       <span>{{ Math.round(titles.vote_average) }}</span>
     </div>
 
   </div>
+
 
 
 </div>
@@ -53,6 +56,15 @@ export default {
       span {
         margin-right: 20px;
       }
+
+      .flag {
+          width: 70px;
+          margin: 0 auto;
+
+          img {
+            width: 100%;
+          }
+        }
     }
   }
 }
