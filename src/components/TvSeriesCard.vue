@@ -1,57 +1,24 @@
 <script>
-import FilmCard from './Filmcard.vue';
-import TvSeriesCard from './TvSeriesCard.vue';
 import { store } from '../store';
 export default {
-    name: "ShowTitles",
-    components: {
-      FilmCard,
-      TvSeriesCard
-    },
+    name: "TvSeriesCard",
     data() {
       return {
-        store,
+        store
       }
     }
 }
 </script>
 
 <template>
-
-  <div id="film-list">
-
-    <h2>FILMS</h2>
-
-    <div v-if="store.filmList.length > 0" >
-      <FilmCard />
-    </div>
-
-    <div v-else>
-      <h2>Nessun film trovato</h2>
-    </div>
-
-  </div>
-
-  <div id="seriev-list">
-
-    <h2>SERIE TV</h2>
-
-    <div v-if="store.TvList.length > 0" >
-      <TvSeriesCard/>
-    </div>
-    <div v-else>
-      <h2>Nessuna serie tv trovata</h2>
-    </div>
-  </div>
   
-  
-<!-- <div id="container">
+<div id="container">
 
-  <div class="card" v-for="titles in store.filmList">
+  <div class="card" v-for="titles in store.TvList">
 
     <div class="title">
-      <h2> {{ titles.title }}</h2>
-     <h3>{{ titles.original_title }}</h3>
+      <h2> {{ titles.name }}</h2>
+     <h3>{{ titles.original_name }}</h3>
     </div>
     
     <div class="other-infos">
@@ -63,9 +30,7 @@ export default {
 
   </div>
 
-
-
-</div> -->
+</div>
 
 </template>
 

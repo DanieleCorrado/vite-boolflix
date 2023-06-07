@@ -16,18 +16,29 @@ export default {
   },
   methods: {
     getFilms() {
-      let myURL = this.store.apiURL;
+
+      let FilmURL = this.store.apiFilmURL;
+      let tvURL = this.store.apiTVURL;
 
       if(store.searchText != "") {
-        store.searchText= store.searchText.replace(/ /g, "-")
-        myURL += `${this.store.searchText}`;
+        store.searchText= store.searchText.replace(/ /g, "-");
+        FilmURL += `${this.store.searchText}`;
+        tvURL += `${this.store.searchText}`;
         store.searchText = "";
       }
 
-      axios.get(myURL).then(films => {
-        console.log(myURL);
+      axios.get(FilmURL).then(films => {
+        console.log(FilmURL);
           store.filmList = films.data.results;
           console.log(store.filmList);
+        }).catch(error => {
+          console.log(error);
+        })
+
+      axios.get(tvURL).then(Series => {
+        console.log(tvURL);
+          store.TvList = Series.data.results;
+          console.log(store.TvList);
         }).catch(error => {
           console.log(error);
         })
