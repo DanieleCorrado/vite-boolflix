@@ -45,27 +45,6 @@ export default {
   </div>
   
   
-<!-- <div id="container">
-
-  <div class="card" v-for="titles in store.filmList">
-
-    <div class="title">
-      <h2> {{ titles.title }}</h2>
-     <h3>{{ titles.original_title }}</h3>
-    </div>
-    
-    <div class="other-infos">
-      <div class="flag">
-        <img :src='store.nationFlag + titles.original_language + ".svg" ' :alt="titles.original_language">
-      </div>
-      <span>{{ Math.round(titles.vote_average) }}</span>
-    </div>
-
-  </div>
-
-
-
-</div> -->
 
 </template>
 

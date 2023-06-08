@@ -16,6 +16,10 @@ export default {
 
   <div class="card" v-for="titles in store.filmList">
 
+    <div class="poster-image">
+      <img v-if="titles.poster_path != null" :src="store.imageSizeURL + titles.poster_path" :alt='"Copertina " + titles.title'>
+    </div>
+
     <div class="title">
       <h2> {{ titles.title }}</h2>
      <h3>{{ titles.original_title }}</h3>
@@ -25,8 +29,23 @@ export default {
       <div class="flag">
         <img :src='store.nationFlag + titles.original_language + ".svg" ' :alt="titles.original_language">
       </div>
-      <span>{{ Math.round(titles.vote_average) }}</span>
+      <div id="vote">
+        <span v-for="i in 5">
+
+          <span v-if="i <= Math.round(titles.vote_average/2)">
+            <font-awesome-icon icon="fa-solid fa-star" />
+          </span>
+
+          <span v-else>
+            <font-awesome-icon icon="fa-regular fa-star" />
+          </span>
+
+        </span>
+      </div>
+
     </div>
+
+    
 
   </div>
 
@@ -50,6 +69,11 @@ export default {
     color: $textColor;
     background-color: $cardColor;
 
+    .poster-image{
+      text-align: center;
+      margin: 10px 0;
+    }
+
     .other-infos {
       span {
         margin-right: 20px;
@@ -58,11 +82,17 @@ export default {
       .flag {
           width: 70px;
           margin: 0 auto;
+          margin-top: 20px;
 
           img {
             width: 100%;
           }
         }
+
+      #vote {
+        text-align: center;
+        margin: 20px 0;
+      }
     }
   }
 }

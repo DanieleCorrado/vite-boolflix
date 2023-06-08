@@ -6,6 +6,19 @@ export default {
       return {
         store
       }
+    },
+    methods: {
+      fromNumberToStars(vote){
+
+        const votes = Math.round(vote)/2;
+
+        for(let i = 0; i < votes; i++) {
+          store.stars[i] = "star";
+        }
+
+        console.log(store.stars)
+
+      }
     }
 }
 </script>
@@ -16,6 +29,10 @@ export default {
 
   <div class="card" v-for="titles in store.TvList">
 
+    <div class="poster-image">
+      <img v-if="titles.poster_path != null" :src="store.imageSizeURL + titles.poster_path" :alt='Copertina + titles.name'>
+    </div>
+
     <div class="title">
       <h2> {{ titles.name }}</h2>
      <h3>{{ titles.original_name }}</h3>
@@ -25,7 +42,20 @@ export default {
       <div class="flag">
         <img :src='store.nationFlag + titles.original_language + ".svg" ' :alt="titles.original_language">
       </div>
-      <span>{{ Math.round(titles.vote_average) }}</span>
+      <div id="vote">
+        <span v-for="i in 5">
+
+          <span v-if="i <= Math.round(titles.vote_average/2)">
+            <font-awesome-icon icon="fa-solid fa-star" />
+          </span>
+
+          <span v-else>
+            <font-awesome-icon icon="fa-regular fa-star" />
+          </span>
+
+        </span>
+      </div>
+
     </div>
 
   </div>
@@ -58,10 +88,16 @@ export default {
       .flag {
           width: 70px;
           margin: 0 auto;
+          margin-top: 20px;
 
           img {
             width: 100%;
           }
+        }
+
+        #vote {
+          text-align: center;
+          margin: 20px 0;
         }
     }
   }

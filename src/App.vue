@@ -4,6 +4,7 @@ import ShowTitles from './components/ShowTitles.vue';
 import { store } from './store';
 import axios from 'axios';
 
+
 export default {
   components: {
     Header,
