@@ -27,14 +27,22 @@ export default {
   
 <div id="container">
 
+  <!-- Card della serie Tv -->
+
   <div class="card" v-for="titles in store.TvList">
+
+    <!-- Poster della serie -->
 
     <div class="poster-image">
       <img v-if="titles.poster_path != null" :src="store.imageSizeURL + titles.poster_path" :alt='Copertina + titles.name'>
     </div>
 
+    <!-- Altre informazioni sulla serie -->
+
     <div class="back-card" :class="titles.poster_path == null ? 'show':''">
       
+      <!-- Titolo serie -->
+
       <div class="title">
         <h2><b>Title:</b> {{ titles.name }}</h2>
         <h4 v-if="titles.name != titles.original_name"><b>Original title:</b> {{ titles.original_name }}</h4>
@@ -42,25 +50,32 @@ export default {
     
       <div class="other-infos">
 
+        <!-- Lingua originale -->
+
         <div class="flag">
           <span><b>original language:</b></span>
           <img :src='store.nationFlag + titles.original_language + ".svg" ' :alt="titles.original_language">
         </div>
-        
-      <div id="vote">
-        <span><b>Vote: </b></span>
-        <span v-for="i in 5">
 
-          <span class="stars full" v-if="i <= Math.round(titles.vote_average/2)">
-            <font-awesome-icon icon="fa-solid fa-star" />
+        <!-- Voto -->
+
+        <div id="vote">
+          <span><b>Vote: </b></span>
+          <span v-for="i in 5">
+
+            <span class="stars full" v-if="i <= Math.round(titles.vote_average/2)">
+              <font-awesome-icon icon="fa-solid fa-star" />
+            </span>
+
+            <span class="stars" v-else>
+              <font-awesome-icon icon="fa-regular fa-star" />
+            </span>
+
           </span>
+        </div>
+      
+      <!-- Descrizione -->
 
-          <span class="stars" v-else>
-            <font-awesome-icon icon="fa-regular fa-star" />
-          </span>
-
-        </span>
-      </div>
       <div class="Overview" v-if="titles.overview != ''"><b>Overview: </b> {{ titles.overview }}</div>
 
     </div>
@@ -82,6 +97,7 @@ export default {
   margin-top: 30px;
   flex-wrap: wrap;
 
+  // Regole card
   .card {
     width: calc(100% / 5 - 20px);
     margin: 0 10px;
@@ -89,6 +105,7 @@ export default {
     color: $textColor;
     background-color: $cardColor;
 
+    // Regole poster
     .poster-image{
       display: inline-block;
     }
@@ -96,6 +113,7 @@ export default {
       display: none;
     }
 
+    // Regole retro card
     .back-card {
       display: none;
       padding: 10px;
@@ -111,6 +129,7 @@ export default {
 
     .other-infos {
 
+      // Regole lingua originale
       .flag {
         margin-top: 20px;
         display: flex;
@@ -122,6 +141,8 @@ export default {
         }
       }
 
+      // Regole voto
+      
       #vote {
         margin: 20px 0;
         span {

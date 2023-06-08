@@ -21,12 +21,16 @@ export default {
       let FilmURL = this.store.apiFilmURL;
       let tvURL = this.store.apiTVURL;
 
+      // Controllo se l'utente ha èffettuato una ricerca in caso affermativo aggiungo la stringa inserita dall'utente all'url dell'API
+
       if(store.searchText != "") {
         store.searchText= store.searchText.replace(/ /g, "-");
         FilmURL += `${this.store.searchText}`;
         tvURL += `${this.store.searchText}`;
         store.searchText = "";
       }
+
+      // Effettuo la richiesta al server per accedere ai film
 
       axios.get(FilmURL).then(films => {
         console.log(FilmURL);
@@ -35,6 +39,8 @@ export default {
         }).catch(error => {
           console.log(error);
         })
+
+      // Effettuo la richiesta al server per accedere alle serie tv
 
       axios.get(tvURL).then(Series => {
         console.log(tvURL);
@@ -72,6 +78,5 @@ main {
   margin: 0 auto;
   margin-top: 20px;
 }
-
 
 </style>
