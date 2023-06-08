@@ -49,36 +49,12 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@use '../styles/partials/variables.scss' as *;
 
 #container {
   
   display: flex;
   margin-top: 30px;
   flex-wrap: wrap;
-
-  .card {
-    width: calc(100% / 5 - 20px);
-    margin: 0 10px;
-    margin-bottom: 20px;
-    color: $textColor;
-    background-color: $cardColor;
-
-    .other-infos {
-      span {
-        margin-right: 20px;
-      }
-
-      .flag {
-          width: 70px;
-          margin: 0 auto;
-
-          img {
-            width: 100%;
-          }
-        }
-    }
-  }
 }
 
 </style>

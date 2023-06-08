@@ -33,28 +33,37 @@ export default {
       <img v-if="titles.poster_path != null" :src="store.imageSizeURL + titles.poster_path" :alt='Copertina + titles.name'>
     </div>
 
-    <div class="title">
-      <h2> {{ titles.name }}</h2>
-     <h3>{{ titles.original_name }}</h3>
-    </div>
-    
-    <div class="other-infos">
-      <div class="flag">
-        <img :src='store.nationFlag + titles.original_language + ".svg" ' :alt="titles.original_language">
+    <div class="back-card" :class="titles.poster_path == null ? 'show':''">
+      
+      <div class="title">
+        <h2><b>Title:</b> {{ titles.name }}</h2>
+        <h4 v-if="titles.name != titles.original_name"><b>Original title:</b> {{ titles.original_name }}</h4>
       </div>
+    
+      <div class="other-infos">
+
+        <div class="flag">
+          <span><b>original language:</b></span>
+          <img :src='store.nationFlag + titles.original_language + ".svg" ' :alt="titles.original_language">
+        </div>
+        
       <div id="vote">
+        <span><b>Vote: </b></span>
         <span v-for="i in 5">
 
-          <span v-if="i <= Math.round(titles.vote_average/2)">
+          <span class="stars full" v-if="i <= Math.round(titles.vote_average/2)">
             <font-awesome-icon icon="fa-solid fa-star" />
           </span>
 
-          <span v-else>
+          <span class="stars" v-else>
             <font-awesome-icon icon="fa-regular fa-star" />
           </span>
 
         </span>
       </div>
+      <div class="Overview" v-if="titles.overview != ''"><b>Overview: </b> {{ titles.overview }}</div>
+
+    </div>
 
     </div>
 
@@ -80,25 +89,53 @@ export default {
     color: $textColor;
     background-color: $cardColor;
 
+    .poster-image{
+      display: inline-block;
+    }
+    &:hover .poster-image{
+      display: none;
+    }
+
+    .back-card {
+      display: none;
+      padding: 10px;
+    }
+
+    .show {
+      display: inline-block;
+    }
+
+    &:hover .back-card{
+      display: inline-block;
+    }
+
     .other-infos {
-      span {
-        margin-right: 20px;
-      }
 
       .flag {
-          width: 70px;
-          margin: 0 auto;
-          margin-top: 20px;
+        margin-top: 20px;
+        display: flex;
+        justify-content:flex-start;
 
-          img {
-            width: 100%;
-          }
+        img {
+          width: 20%;
+          margin-left: 20px;
+        }
+      }
+
+      #vote {
+        margin: 20px 0;
+        span {
+          margin-right: 10px;
         }
 
-        #vote {
-          text-align: center;
-          margin: 20px 0;
+        .stars{
+          font-size: 30px;
         }
+
+        .stars.full {
+            color: yellow;
+        }
+      }
     }
   }
 }

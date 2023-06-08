@@ -67,5 +67,11 @@ export default {
 
 @use './styles/generals.scss' as *;
 
+main {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
 
 </style>
